@@ -8,6 +8,7 @@ namespace Client {
         EcsSystems _systems;
 
         public StaticData staticData;
+        public SceneData sceneData;
 
         void Start () {
             _world = new EcsWorld ();
@@ -18,8 +19,14 @@ namespace Client {
 #endif
             _systems
                 .Add(new CreateShipSystem())
+                .Add(new InputSystem())
+                .Add(new MoveShipSystem())
+                .Add(new CameraSystem())
 
                 .Inject(staticData)
+                .Inject(sceneData)
+
+                .OneFrame<InputEvent>()
 
                 .Init ();
         }
