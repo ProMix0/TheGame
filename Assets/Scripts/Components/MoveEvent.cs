@@ -2,8 +2,9 @@ using UnityEngine;
 
 namespace Client
 {
-    struct InputEvent
+    struct MoveEvent
     {
         public Vector2 direction;
+        public int movingVelocity;
     }
 }

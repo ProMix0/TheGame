@@ -15,16 +15,37 @@ namespace Client
 
         public void Run()
         {
-            Vector2 vector = new Vector2();
-            if (Input.GetKeyDown(KeyCode.W))
-                vector.x = 1;
-            if (Input.GetKeyDown(KeyCode.S))
-                vector.x = -1;
+            int sign = 0;
+            if (Input.GetKey(KeyCode.W))
+                sign = 1;
+            if (Input.GetKey(KeyCode.S))
+                sign = -1;
+
+            bool isRotate = false;
+            bool left = false;
+            if (Input.GetKey(KeyCode.A))
+            {
+                isRotate = true;
+                left = true;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                left = false;
+                isRotate = true;
+            }
+
             foreach (var index in ships)
             {
                 ref EcsEntity ship = ref ships.GetEntity(index);
-                ref InputEvent input = ref ship.Get<InputEvent>();
-                input.direction = vector;
+
+                ref MoveEvent move = ref ship.Get<MoveEvent>();
+                move.movingVelocity = ships.Get1(index).velocity * sign;
+
+                if (isRotate)
+                {
+                    ref RotateEvent rotate = ref ship.Get<RotateEvent>();
+                    rotate.left = left;
+                }
             }
         }
     }

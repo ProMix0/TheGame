@@ -11,8 +11,9 @@ namespace Client
         public void Init()
         {
             ref ShipComponent ship = ref world.NewEntity().Get<ShipComponent>();
-            ship.transform = Object.Instantiate(staticData.ship, Vector3.zero, Quaternion.Euler(90, 90, 0)).transform;
+            ship.transform = Object.Instantiate(staticData.ship).transform;
             ship.velocity = 100;
+            ship.rotateVelocity = 10;
         }
     }
 }
