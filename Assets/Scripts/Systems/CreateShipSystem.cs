@@ -7,13 +7,22 @@ namespace Client
     {
         private StaticData staticData;
         private EcsWorld world;
+        private ShipData shipData;
+
+        public CreateShipSystem(ShipData shipData)
+        {
+            this.shipData = shipData;
+        }
 
         public void Init()
         {
-            ref ShipComponent ship = ref world.NewEntity().Get<ShipComponent>();
+            EcsEntity entity = world.NewEntity();
+            ref ShipComponent ship = ref entity.Get<ShipComponent>();
             ship.transform = Object.Instantiate(staticData.ship).transform;
-            ship.velocity = 100;
-            ship.rotateVelocity = 10;
+            ship.velocity = shipData.velocity;
+            ship.rotateVelocity = shipData.rotateVelocity;
+
+            entity.Get<CameraFollowComponent>();
         }
     }
 }

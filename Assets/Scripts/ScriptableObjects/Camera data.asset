@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23c822bc64ff98346880e6fa6d152abb, type: 3}
-  m_Name: Static Data
+  m_Script: {fileID: 11500000, guid: 202ee50f3cf3db94ca23c5fd77d42930, type: 3}
+  m_Name: Camera data
   m_EditorClassIdentifier: 
-  ship: {fileID: 6766615779837855203, guid: bc8ffe9a82107c44db6db1d511c51713, type: 3}
+  cameraHeight: 200

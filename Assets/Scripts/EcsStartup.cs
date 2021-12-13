@@ -11,6 +11,7 @@ namespace Client
 
         public StaticData staticData;
         public SceneData sceneData;
+        public CameraData cameraData;
 
         void Start()
         {
@@ -21,12 +22,13 @@ namespace Client
             EcsSystemsObserver.Create(_systems);
 #endif
             _systems
-                .Add(new CreateShipSystem())
+                .Add(new CreateShipSystem(sceneData.ship))
                 .Add(new InputSystem())
                 .Add(new MoveSystem())
                 .Add(new RotateSystem())
-                //.Add(new CameraSystem())
+                .Add(new CameraSystem())
 
+                .Inject(cameraData)
                 .Inject(staticData)
                 .Inject(sceneData)
 
