@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Client
 {
-    struct MoveEvent
+    struct AccelerationEvent
     {
         public Vector2 direction;
-        public int movingVelocity;
+        public int acceleration;
     }
 }

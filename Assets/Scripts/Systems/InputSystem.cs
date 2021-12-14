@@ -10,7 +10,7 @@ namespace Client
 {
     class InputSystem : IEcsRunSystem
     {
-        private EcsWorld world;
+        //private EcsWorld world;
         private EcsFilter<ShipComponent> ships;
 
         public void Run()
@@ -37,14 +37,15 @@ namespace Client
             foreach (var index in ships)
             {
                 ref EcsEntity ship = ref ships.GetEntity(index);
+                ShipComponent shipComponent = ships.Get1(index);
 
-                ref MoveEvent move = ref ship.Get<MoveEvent>();
-                move.movingVelocity = ships.Get1(index).velocity * sign;
+                ref AccelerationEvent move = ref ship.Get<AccelerationEvent>();
+                move.acceleration = shipComponent.acceleration * sign;
 
                 if (isRotate)
                 {
-                    ref RotateEvent rotate = ref ship.Get<RotateEvent>();
-                    rotate.left = left;
+                    ref RotateAccelerationEvent rotate = ref ship.Get<RotateAccelerationEvent>();
+                    rotate.acceleration = left ? shipComponent.rotateAcceleration : -shipComponent.rotateAcceleration;
                 }
             }
         }

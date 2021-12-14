@@ -24,16 +24,21 @@ namespace Client
             _systems
                 .Add(new CreateShipSystem(sceneData.ship))
                 .Add(new InputSystem())
+
+                .Add(new AccelerationSystem())
+                .Add(new RotateAccelerationSystem())
+
                 .Add(new MoveSystem())
                 .Add(new RotateSystem())
+
                 .Add(new CameraSystem())
 
                 .Inject(cameraData)
                 .Inject(staticData)
                 .Inject(sceneData)
 
-                .OneFrame<MoveEvent>()
-                .OneFrame<RotateEvent>()
+                .OneFrame<AccelerationEvent>()
+                .OneFrame<RotateAccelerationEvent>()
 
                 .Init();
         }

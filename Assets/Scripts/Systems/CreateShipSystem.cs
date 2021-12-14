@@ -19,8 +19,11 @@ namespace Client
             EcsEntity entity = world.NewEntity();
             ref ShipComponent ship = ref entity.Get<ShipComponent>();
             ship.transform = Object.Instantiate(staticData.ship).transform;
-            ship.velocity = shipData.velocity;
-            ship.rotateVelocity = shipData.rotateVelocity;
+
+            ship.maxVelocity = shipData.maxVelocity;
+            ship.maxRotateVelocity = shipData.maxRotateVelocity;
+            ship.acceleration = shipData.acceleration;
+            ship.rotateAcceleration = shipData.rotateAcceleration;
 
             entity.Get<CameraFollowComponent>();
         }
