@@ -39,8 +39,11 @@ namespace Client
                 ref EcsEntity ship = ref ships.GetEntity(index);
                 ShipComponent shipComponent = ships.Get1(index);
 
-                ref AccelerationEvent move = ref ship.Get<AccelerationEvent>();
-                move.acceleration = shipComponent.acceleration * sign;
+                if (sign != 0)
+                {
+                    ref AccelerationEvent move = ref ship.Get<AccelerationEvent>();
+                    move.acceleration = shipComponent.acceleration * sign;
+                }
 
                 if (isRotate)
                 {

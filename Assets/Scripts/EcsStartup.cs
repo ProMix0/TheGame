@@ -8,6 +8,7 @@ namespace Client
     {
         EcsWorld _world;
         EcsSystems _systems;
+        EcsSystems fixedSystems;
 
         public StaticData staticData;
         public SceneData sceneData;
@@ -27,6 +28,9 @@ namespace Client
 
                 .Add(new AccelerationSystem())
                 .Add(new RotateAccelerationSystem())
+
+                .Add(new SlowingSystem())
+                .Add(new RotateSlowingSystem())
 
                 .Add(new MoveSystem())
                 .Add(new RotateSystem())
