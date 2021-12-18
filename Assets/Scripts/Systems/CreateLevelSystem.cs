@@ -1,25 +1,19 @@
-﻿using Leopotam.Ecs;
+using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Client
-{
-    internal class CreateShipSystem : IEcsInitSystem
-    {
+namespace Client {
+    sealed class CreateLevelSystem : IEcsInitSystem {
+        // auto-injected fields.
+        readonly EcsWorld world = null;
         private StaticData staticData;
-        private EcsWorld world;
         private ShipData shipData;
 
-        public CreateShipSystem(ShipData shipData)
-        {
-            this.shipData = shipData;
-        }
-
-        public void Init()
-        {
+        public void Init () {
             EcsEntity entity = world.NewEntity();
 
             ref ShipComponent ship = ref entity.Get<ShipComponent>();
             ship.ship = Object.Instantiate(staticData.ship);
+            ship.ship.transform.position = new(100,0,0);
 
             ref MovableComponent movable = ref entity.Get<MovableComponent>();
             movable.maxVelocity = shipData.maxVelocity;

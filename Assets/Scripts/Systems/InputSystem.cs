@@ -11,7 +11,8 @@ namespace Client
     class InputSystem : IEcsRunSystem
     {
         //private EcsWorld world;
-        private EcsFilter<ShipComponent> ships;
+        private EcsFilter<ShipComponent, MovableComponent> ships;
+        private SceneData sceneData;
 
         public void Run()
         {
@@ -34,21 +35,39 @@ namespace Client
                 isRotate = true;
             }
 
+            Vector3? mouse = null;
+            if (Input.GetMouseButtonDown(0))
+            {
+                Plane plane = new(Vector3.up, Vector3.zero);
+                Ray ray = sceneData.camera.ScreenPointToRay(Input.mousePosition);
+                if (plane.Raycast(ray, out var hitDistance))
+                {
+                    mouse = ray.GetPoint(hitDistance);
+                }
+            }
+
             foreach (var index in ships)
             {
                 ref EcsEntity ship = ref ships.GetEntity(index);
                 ShipComponent shipComponent = ships.Get1(index);
+                MovableComponent movable = ships.Get2(index);
 
                 if (sign != 0)
                 {
                     ref AccelerationEvent move = ref ship.Get<AccelerationEvent>();
-                    move.acceleration = shipComponent.acceleration * sign;
+                    move.acceleration = movable.acceleration * sign;
                 }
 
                 if (isRotate)
                 {
                     ref RotateAccelerationEvent rotate = ref ship.Get<RotateAccelerationEvent>();
-                    rotate.acceleration = left ? shipComponent.rotateAcceleration : -shipComponent.rotateAcceleration;
+                    rotate.acceleration = left ? movable.rotateAcceleration : -movable.rotateAcceleration;
+                }
+
+                if (mouse != null && mouse.HasValue)
+                {
+                    ref ShootEvent shoot = ref ship.Get<ShootEvent>();
+                    shoot.direction = mouse.Value - shipComponent.ship.transform.position;
                 }
             }
         }

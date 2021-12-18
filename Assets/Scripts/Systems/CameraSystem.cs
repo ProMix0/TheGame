@@ -22,7 +22,7 @@ namespace Client
             foreach (var index in ships)
             {
                 ShipComponent ship = ships.Get1(index);
-                sceneData.camera.transform.position = ship.transform.position + new Vector3(0, cameraHeight, 0);
+                sceneData.camera.transform.position = ship.ship.transform.position + new Vector3(0, cameraHeight, 0);
                 break;
             }
         }

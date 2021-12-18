@@ -7,14 +7,15 @@ namespace Client
     {
         // auto-injected fields.
         //readonly EcsWorld _world = null;
-        private EcsFilter<ShipComponent> ships;
+        private EcsFilter<ShipComponent, MovableComponent> ships;
 
         void IEcsRunSystem.Run()
         {
             foreach (var index in ships)
             {
                 ShipComponent ship = ships.Get1(index);
-                ship.transform.position += ship.transform.forward * (ship.currentVelocity * Time.deltaTime);
+                MovableComponent movable = ships.Get2(index);
+                ship.ship.transform.position += ship.ship.transform.forward * (movable.currentVelocity * Time.deltaTime);
             }
         }
     }

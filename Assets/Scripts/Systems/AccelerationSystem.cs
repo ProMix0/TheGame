@@ -7,13 +7,13 @@ namespace Client
     {
 
         //readonly EcsWorld _world = null;
-        private EcsFilter<ShipComponent, AccelerationEvent> ships;
+        private EcsFilter<MovableComponent, AccelerationEvent> ships;
 
         void IEcsRunSystem.Run()
         {
             foreach (var index in ships)
             {
-                ref ShipComponent ship = ref ships.Get1(index);
+                ref MovableComponent ship = ref ships.Get1(index);
                 AccelerationEvent acceleration = ships.Get2(index);
 
                 float velocity = ship.currentVelocity + acceleration.acceleration * Time.deltaTime;

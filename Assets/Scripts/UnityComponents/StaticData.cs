@@ -6,5 +6,6 @@ namespace Client
     internal class StaticData:ScriptableObject
     {
         public GameObject ship;
+        public GameObject projectile;
     }
 }

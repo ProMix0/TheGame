@@ -10,15 +10,17 @@ namespace Client
 {
     class RotateSystem : IEcsRunSystem
     {
-        private EcsFilter<ShipComponent> ships;
+        private EcsFilter<ShipComponent, MovableComponent> ships;
         public void Run()
         {
             foreach (var index in ships)
             {
                 ShipComponent ship = ships.Get1(index);
-                Quaternion temp = ship.transform.rotation;
-                temp.eulerAngles += new Vector3(0, -ship.currentRotateVelocity, 0) * Time.deltaTime;
-                ship.transform.rotation = temp;
+                Quaternion temp = ship.ship.transform.rotation;
+
+                MovableComponent movable = ships.Get2(index);
+                temp.eulerAngles += new Vector3(0, -movable.currentRotateVelocity, 0) * Time.deltaTime;
+                ship.ship.transform.rotation = temp;
             }
         }
     }

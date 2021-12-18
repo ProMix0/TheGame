@@ -7,19 +7,19 @@ namespace Client
     sealed class RotateSlowingSystem : IEcsRunSystem
     {
         // auto-injected fields.
-        private EcsFilter<ShipComponent>.Exclude<RotateAccelerationEvent> ships;
+        private EcsFilter<MovableComponent>.Exclude<RotateAccelerationEvent> ships;
 
         void IEcsRunSystem.Run()
         {
             foreach (var index in ships)
             {
-                ref ShipComponent ship = ref ships.Get1(index);
+                ref MovableComponent movable = ref ships.Get1(index);
 
-                float velocity = ship.currentRotateVelocity;
+                float velocity = movable.currentRotateVelocity;
                 if (velocity > 1) velocity -= 1 * Time.deltaTime;
                 else if (velocity < -1) velocity += 1 * Time.deltaTime;
                 else velocity = 0;
-                ship.currentRotateVelocity = velocity;
+                movable.currentRotateVelocity = velocity;
             }
         }
     }
