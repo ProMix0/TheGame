@@ -6,9 +6,8 @@ namespace Client
 {
     sealed class EcsStartup : MonoBehaviour
     {
-        EcsWorld _world;
-        EcsSystems _systems;
-        EcsSystems fixedSystems;
+        EcsWorld world;
+        EcsSystems systems;
 
         public StaticData staticData;
         public SceneData sceneData;
@@ -16,50 +15,38 @@ namespace Client
 
         void Start()
         {
-            _world = new EcsWorld();
-            _systems = new EcsSystems(_world);
+            world = new EcsWorld();
+            systems = new EcsSystems(world);
 #if UNITY_EDITOR
-            EcsWorldObserver.Create(_world);
-            EcsSystemsObserver.Create(_systems);
+            EcsWorldObserver.Create(world);
+            EcsSystemsObserver.Create(systems);
 #endif
-            _systems
-                .Add(new CreateShipSystem(sceneData.ship))
-                .Add(new InputSystem())
-
-                .Add(new AccelerationSystem())
-                .Add(new RotateAccelerationSystem())
-
-                .Add(new SlowingSystem())
-                .Add(new RotateSlowingSystem())
-
+            systems
+                
+                .Add(new CreateLevelSystem())
                 .Add(new MoveSystem())
-                .Add(new RotateSystem())
-
-                .Add(new CameraSystem())
+                .Add(new CameraFollowSystem())
 
                 .Inject(cameraData)
                 .Inject(staticData)
                 .Inject(sceneData)
-
-                .OneFrame<AccelerationEvent>()
-                .OneFrame<RotateAccelerationEvent>()
 
                 .Init();
         }
 
         void Update()
         {
-            _systems?.Run();
+            systems?.Run();
         }
 
         void OnDestroy()
         {
-            if (_systems != null)
+            if (systems != null)
             {
-                _systems.Destroy();
-                _systems = null;
-                _world.Destroy();
-                _world = null;
+                systems.Destroy();
+                systems = null;
+                world.Destroy();
+                world = null;
             }
         }
     }
