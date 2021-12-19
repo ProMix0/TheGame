@@ -6,7 +6,7 @@ namespace Client
     sealed class MoveSystem : IEcsRunSystem
     {
 
-        private EcsFilter<MovableComponent, GameObjectComponent> toMove;
+        private EcsFilter<MovableComponent, GameObjectComponent>.Exclude<ReachEndpointComponent> toMove;
 
         public void Run()
         {

@@ -25,6 +25,8 @@ namespace Client
                 
                 .Add(new CreateLevelSystem())
                 .Add(new MoveSystem())
+                .Add(new ReachEndpointSystem())
+                .Add(new RotateToDirectionSystem())
                 .Add(new CameraFollowSystem())
 
                 .Inject(cameraData)
