@@ -6,5 +6,6 @@ using UnityEngine;
 public class SceneData : MonoBehaviour
 {
     public new Camera camera;
+    public int cameraHeight;
     public ShipData ship;
 }

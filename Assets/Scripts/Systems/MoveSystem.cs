@@ -5,16 +5,25 @@ namespace Client
 {
     sealed class MoveSystem : IEcsRunSystem
     {
-        // auto-injected fields.
-        //readonly EcsWorld _world = null;
-        private EcsFilter<ShipComponent> ships;
 
-        void IEcsRunSystem.Run()
+        private EcsFilter<MovableComponent, GameObjectComponent>.Exclude<ReachEndpointComponent> toMove;
+
+        public void Run()
         {
-            foreach (var index in ships)
+            foreach (var index in toMove)
             {
-                ShipComponent ship = ships.Get1(index);
-                ship.transform.position += ship.transform.forward * (ship.currentVelocity * Time.deltaTime);
+                Transform transform = toMove.Get2(index).gameObject.transform;
+                MovableComponent movable = toMove.Get1(index);
+                Vector3 moving = movable.destination - transform.position;
+
+                Vector3 normalized = moving.normalized * (movable.maxSpeed * Time.deltaTime);
+
+                if (moving.magnitude < normalized.magnitude)
+                    transform.position += moving;
+                else
+                {
+                    transform.position += normalized;
+                }
             }
         }
     }

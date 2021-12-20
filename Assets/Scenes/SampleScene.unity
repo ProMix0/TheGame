@@ -264,6 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 963194227}
+  cameraHeight: 200
   ship: {fileID: 11400000, guid: 506fa2943c940414ebc26f02dc1862e5, type: 2}
 --- !u!1 &1843696963
 GameObject:
