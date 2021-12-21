@@ -13,6 +13,7 @@ public class RadiationVisualFieldOfRadiation : MonoBehaviour
     public float edgeDst;
     private RadiationResistComponent rrc;
     private float resist;
+    
     void Start()
     {
        viewMesh = new Mesh();
@@ -43,8 +44,7 @@ public class RadiationVisualFieldOfRadiation : MonoBehaviour
          Vector3 dirToTarget=(target.position-transform.position).normalized;
          if(!Physics.Raycast(transform.position,dirToTarget,out RaycastHit hit, dstToTarget, obstacleMask))
          {
-            //rrc = hit.collider.GetComponent<RadiationResistComponent>();
-            //resist = rrc.ResistancePersent;
+            
             Debug.Log("There's a target");
          }
       } 
@@ -106,7 +106,9 @@ public class RadiationVisualFieldOfRadiation : MonoBehaviour
        RaycastHit hit;
        if (Physics.Raycast(transform.position, dir, out hit, radius, obstacleMask))
        {
-          return new ViewCastInfo(true, hit.point, hit.distance, globalAngle);
+          rrc = hit.collider.GetComponent<RadiationResistComponent>();
+          resist = rrc.ResistancePersent;
+          return new ViewCastInfo(true, transform.position + dir *((1-resist)*(radius-hit.distance)+hit.distance), (1-resist)*(radius-hit.distance)+hit.distance, globalAngle);
        }
        else
        {
