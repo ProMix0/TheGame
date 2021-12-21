@@ -11,7 +11,6 @@ namespace Client
 
         public StaticData staticData;
         public SceneData sceneData;
-        public CameraData cameraData;
 
         void Start()
         {
@@ -24,12 +23,15 @@ namespace Client
             systems
                 
                 .Add(new CreateLevelSystem())
+                .Add(new EnemySpawnerSystem())
+                .Add(new SpawnerRelocateSystem())
+                .Add(new SetDestinationSystem())
+
                 .Add(new MoveSystem())
                 .Add(new ReachEndpointSystem())
                 .Add(new RotateToDirectionSystem())
                 .Add(new CameraFollowSystem())
 
-                .Inject(cameraData)
                 .Inject(staticData)
                 .Inject(sceneData)
 

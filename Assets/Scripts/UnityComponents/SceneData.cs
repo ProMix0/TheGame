@@ -7,5 +7,7 @@ public class SceneData : MonoBehaviour
 {
     public new Camera camera;
     public int cameraHeight;
-    public ShipData ship;
+
+    public int width;
+    public int height;
 }
