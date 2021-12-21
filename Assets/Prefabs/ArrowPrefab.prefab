@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 8848195906597798789, guid: fbf185afe4ea6f74da2910ff2b215199,
         type: 3}
       propertyPath: m_Name
-      value: ArrowAsset
+      value: ArrowPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 8848195906597798794, guid: fbf185afe4ea6f74da2910ff2b215199,
         type: 3}
@@ -75,7 +75,7 @@ PrefabInstance:
     - target: {fileID: 8848195907398582964, guid: fbf185afe4ea6f74da2910ff2b215199,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8848195907398582964, guid: fbf185afe4ea6f74da2910ff2b215199,
         type: 3}

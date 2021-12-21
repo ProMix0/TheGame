@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c38b0a1822ccb54a8762010101e0885, type: 3}
   m_Name: Test ship
   m_EditorClassIdentifier: 
+  prefab: {fileID: 6766615779837855203, guid: bc8ffe9a82107c44db6db1d511c51713, type: 3}
   maxSpeed: 30

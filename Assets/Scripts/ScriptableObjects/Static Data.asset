@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c822bc64ff98346880e6fa6d152abb, type: 3}
   m_Name: Static Data
   m_EditorClassIdentifier: 
-  ship: {fileID: 6766615779837855203, guid: bc8ffe9a82107c44db6db1d511c51713, type: 3}
+  projectile: {fileID: 1853496886749989312, guid: 11a0fa502eda6e842a6f3b08954d1a4e,
+    type: 3}
+  ship: {fileID: 11400000, guid: 506fa2943c940414ebc26f02dc1862e5, type: 2}
+  spawnPoint: {fileID: 5216754121412847346, guid: f104ad78428c0444bbbfdc7b0a356010,
+    type: 3}
+  base: {fileID: 2744699603719324129, guid: 925a161f79cdb3a4fb5670f8009cbe85, type: 3}
