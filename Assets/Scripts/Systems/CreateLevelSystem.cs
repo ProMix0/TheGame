@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Client
 {
+    /// <summary>
+    /// Система, создающая новый уровень
+    /// </summary>
     sealed class CreateLevelSystem : IEcsInitSystem
     {
         readonly EcsWorld world = null;
@@ -11,11 +14,13 @@ namespace Client
 
         public void Init()
         {
+            // Создание точек появления противников
             for (int i = Random.Range(0, 5); i <= 5; i++)
             {
                 EcsEntity spawnPoint = world.NewEntity();
 
-                Utility.Bind(Object.Instantiate(staticData.spawnPoint), ref spawnPoint);
+                // Привязка к GameObject'у
+                Utility.Bind(Object.Instantiate(staticData.spawnPoint), spawnPoint);
 
                 ref EnemySpawnerComponent enemySpawner = ref spawnPoint.Get<EnemySpawnerComponent>();
                 enemySpawner.shipData = staticData.ship;
@@ -26,9 +31,10 @@ namespace Client
                 spawnPoint.Get<NeedRelocate>();
             }
 
+            // Создание базы
             EcsEntity @base = world.NewEntity();
 
-            Utility.Bind(Object.Instantiate(staticData.@base, new Vector3(Random.Range(0, sceneData.height), 0, Random.Range(0, sceneData.width)), Quaternion.identity), ref @base);
+            Utility.Bind(Object.Instantiate(staticData.@base, new Vector3(Random.Range(0, sceneData.height), 0, Random.Range(0, sceneData.width)), Quaternion.identity), @base);
 
             ref BaseComponent baseComponent = ref @base.Get<BaseComponent>();
         }

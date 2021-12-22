@@ -1,12 +1,28 @@
 using Leopotam.Ecs;
+using UnityEngine;
 
-namespace Client {
-    sealed class DeleteReachedSystem : IEcsRunSystem {
-        // auto-injected fields.
-        readonly EcsWorld _world = null;
-        
-        void IEcsRunSystem.Run () {
-            // add your run code here.
+namespace Client
+{
+    /// <summary>
+    /// Система для удаления объектов, достигших цели
+    /// </summary>
+    sealed class DeleteReachedSystem : IEcsRunSystem
+    {
+        private EcsFilter<GameObjectComponent, ReachEndpointComponent> toDestroy;
+
+        public void Run()
+        {
+            foreach(var index in toDestroy)
+            {
+                GameObject gameObject = toDestroy.Get1(index).gameObject;
+                EcsEntity entity = toDestroy.GetEntity(index);
+
+                Utility.Disbind(entity);
+
+                Object.Destroy(gameObject);
+
+                entity.Destroy();
+            }
         }
     }
 }

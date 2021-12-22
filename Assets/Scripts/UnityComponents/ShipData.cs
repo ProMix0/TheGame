@@ -2,6 +2,9 @@
 
 namespace Client
 {
+    /// <summary>
+    /// Параметры корабля
+    /// </summary>
     [CreateAssetMenu]
     public class ShipData : ScriptableObject
     {

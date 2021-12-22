@@ -1,5 +1,10 @@
-namespace Client {
-    struct EnemySpawnerComponent {
+namespace Client
+{
+    /// <summary>
+    /// Компонент точки появления противников
+    /// </summary>
+    struct EnemySpawnerComponent
+    {
         public ShipData shipData;
 
         public int spawnLimit;

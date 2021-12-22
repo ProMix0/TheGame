@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Client
 {
+    /// <summary>
+    /// Устанавливает кораблям базу как цель
+    /// </summary>
     sealed class SetDestinationSystem : IEcsRunSystem
     {
         private EcsFilter<MovableComponent, SetDestination> setDestination;
@@ -16,6 +19,7 @@ namespace Client
                 destination = @base.Get2(index).gameObject.transform.position;
                 break;
             }
+
             foreach (var index in setDestination)
             {
                 ref MovableComponent movable = ref setDestination.Get1(index);

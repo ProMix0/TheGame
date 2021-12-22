@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Параметры сцены
+/// </summary>
 public class SceneData : MonoBehaviour
 {
     public new Camera camera;

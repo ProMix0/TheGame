@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace Client
 {
+    /// <summary>
+    /// Компонент, представляющий информацию о перемещении
+    /// </summary>
     struct MovableComponent
     {
         public int maxSpeed;

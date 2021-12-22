@@ -2,6 +2,9 @@
 
 namespace Client
 {
+    /// <summary>
+    /// Общие настройки
+    /// </summary>
     [CreateAssetMenu]
     internal class StaticData:ScriptableObject
     {

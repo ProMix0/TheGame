@@ -3,9 +3,11 @@ using UnityEngine;
 
 namespace Client
 {
+    /// <summary>
+    /// Поворот по направлению движения
+    /// </summary>
     sealed class RotateToDirectionSystem : IEcsRunSystem
     {
-        // auto-injected fields.
         private EcsFilter<MovableComponent, GameObjectComponent>.Exclude<ReachEndpointComponent> toRotate;
 
         public void Run()
