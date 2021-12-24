@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-class RadiationResistComponent: MonoBehaviour
+namespace Client
 {
-    [Range(0,1)]
-    public float ResistancePersent;
+    struct RadiationResistComponent
+    {
+        public float resistancePersent;
+    }
 }

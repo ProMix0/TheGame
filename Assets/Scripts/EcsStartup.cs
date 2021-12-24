@@ -10,7 +10,7 @@ namespace Client
     sealed class EcsStartup : MonoBehaviour
     {
         EcsWorld world;
-        EcsSystems systems;
+        EcsSystems systems, fixedSystems;
 
         // Свойства, задаваемые из Unity
         public StaticData staticData;
@@ -25,6 +25,7 @@ namespace Client
 #if UNITY_EDITOR
             EcsWorldObserver.Create(world);
             EcsSystemsObserver.Create(systems);
+            EcsSystemsObserver.Create(fixedSystems);
 #endif
 
             systems
@@ -40,9 +41,20 @@ namespace Client
                 .Add(new RotateToDirectionSystem())
                 .Add(new CameraFollowSystem())
 
+                .Add(new DrawRadiationSystem())
+
                 .Add(new DeleteReachedSystem())
 
                 // Заполняем поля систем этими объектами (DI)
+                .Inject(staticData)
+                .Inject(sceneData)
+
+                .Init();
+
+            fixedSystems
+
+                .Add(new EffectRadiationSystem())
+
                 .Inject(staticData)
                 .Inject(sceneData)
 
@@ -57,10 +69,17 @@ namespace Client
             systems?.Run();
         }
 
+        void FixedUpdate()
+        {
+            fixedSystems?.Run();    
+        }
+
         void OnDestroy()
         {
             if (systems != null)
             {
+                fixedSystems.Destroy();
+                fixedSystems = null;
                 systems.Destroy();
                 systems = null;
                 world.Destroy();

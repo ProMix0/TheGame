@@ -22,6 +22,9 @@ namespace Client
                 // Привязка к GameObject'у
                 Utility.Bind(Object.Instantiate(staticData.spawnPoint), spawnPoint);
 
+                ref RadiationComponent radiation = ref spawnPoint.Get<RadiationComponent>();
+                //TODO (SceneData or StaticData)
+
                 ref EnemySpawnerComponent enemySpawner = ref spawnPoint.Get<EnemySpawnerComponent>();
                 enemySpawner.shipData = staticData.ship;
                 enemySpawner.spawnLimit = Random.Range(5, 15);
