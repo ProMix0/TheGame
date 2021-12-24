@@ -40,6 +40,16 @@ namespace Client
             Utility.Bind(Object.Instantiate(staticData.@base, new Vector3(Random.Range(0, sceneData.height), 0, Random.Range(0, sceneData.width)), Quaternion.identity), @base);
 
             ref BaseComponent baseComponent = ref @base.Get<BaseComponent>();
+
+            //
+            EcsEntity camera = world.NewEntity();
+
+            Utility.Bind(new GameObject(), camera);
+
+            camera.Get<CameraFollowComponent>();
+
+            ref WasdMovableComponent movableComponent = ref camera.Get<WasdMovableComponent>();
+            movableComponent.speed = 100;
         }
     }
 }

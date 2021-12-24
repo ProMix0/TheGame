@@ -20,6 +20,7 @@ namespace Client
         {
             world = new EcsWorld();
             systems = new EcsSystems(world);
+            fixedSystems = new EcsSystems(world);
 
             // ¯\_(ツ)_/¯
 #if UNITY_EDITOR
@@ -37,11 +38,12 @@ namespace Client
                 .Add(new SetDestinationSystem())
 
                 .Add(new MoveSystem())
+                .Add(new WasdMovingSystem())
                 .Add(new ReachEndpointSystem())
                 .Add(new RotateToDirectionSystem())
                 .Add(new CameraFollowSystem())
 
-                .Add(new DrawRadiationSystem())
+                //.Add(new DrawRadiationSystem())
 
                 .Add(new DeleteReachedSystem())
 
@@ -53,7 +55,7 @@ namespace Client
 
             fixedSystems
 
-                .Add(new EffectRadiationSystem())
+                //.Add(new EffectRadiationSystem())
 
                 .Inject(staticData)
                 .Inject(sceneData)
