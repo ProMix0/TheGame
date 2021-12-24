@@ -33,6 +33,8 @@ namespace Client
                 
                 // Добавляем системы
                 .Add(new CreateLevelSystem())
+
+                .Add(new PlaceTurretSystem())
                 .Add(new EnemySpawnerSystem())
                 .Add(new SpawnerRelocateSystem())
                 .Add(new SetDestinationSystem())

@@ -236,7 +236,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staticData: {fileID: 11400000, guid: 579845c0cfd14d24b82b081c94ab8f32, type: 2}
   sceneData: {fileID: 982499698}
-  cameraData: {fileID: 11400000, guid: 1d3ebd1a6e03e9a478d2cd81dbaf6c1c, type: 2}
 --- !u!4 &982499697
 Transform:
   m_ObjectHideFlags: 0

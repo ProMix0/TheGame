@@ -15,6 +15,7 @@ MonoBehaviour:
   projectile: {fileID: 1853496886749989312, guid: 11a0fa502eda6e842a6f3b08954d1a4e,
     type: 3}
   ship: {fileID: 11400000, guid: 506fa2943c940414ebc26f02dc1862e5, type: 2}
+  turret: {fileID: 8609808516331556626, guid: 45d2ef2a93450c34dad5aba61690a9bd, type: 3}
   spawnPoint: {fileID: 5216754121412847346, guid: f104ad78428c0444bbbfdc7b0a356010,
     type: 3}
   base: {fileID: 2744699603719324129, guid: 925a161f79cdb3a4fb5670f8009cbe85, type: 3}

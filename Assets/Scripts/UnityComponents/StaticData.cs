@@ -10,6 +10,7 @@ namespace Client
     {
         public GameObject projectile;
         public ShipData ship;
+        public GameObject turret;
         public GameObject spawnPoint;
         public GameObject @base;
     }
