@@ -1,9 +1,4 @@
 ﻿using Leopotam.Ecs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Client
@@ -34,10 +29,16 @@ namespace Client
         /// <param name="entity"></param>
         public static void Disbind(EcsEntity entity)
         {
+            Disbind(entity, out GameObject gameObject);
+            Object.Destroy(gameObject);
+        }
+
+        public static void Disbind(EcsEntity entity, out GameObject gameObject)
+        {
             ref GameObjectComponent component = ref entity.Get<GameObjectComponent>();
 
-            GameObject gameObject = component.gameObject;
-            UnityEngine.Object.Destroy(gameObject.GetComponent<EntityScript>());
+            gameObject = component.gameObject;
+            Object.Destroy(gameObject.GetComponent<EntityScript>());
 
             component.gameObject = null;
             entity.Del<GameObjectComponent>();

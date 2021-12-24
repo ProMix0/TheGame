@@ -38,7 +38,9 @@ namespace Client
                 .Add(new EnemySpawnerSystem())
                 .Add(new SpawnerRelocateSystem())
                 .Add(new SetDestinationSystem())
+                .Add(new TargetingSystem())
 
+                .Add(new MoveToTargetSystem())
                 .Add(new MoveSystem())
                 .Add(new WasdMovingSystem())
                 .Add(new ReachEndpointSystem())
@@ -47,7 +49,9 @@ namespace Client
 
                 //.Add(new DrawRadiationSystem())
 
+                .Add(new ProjectileCollisionSystem())
                 .Add(new DeleteReachedSystem())
+                .Add(new DeleteZeroHealthSystem())
 
                 // Заполняем поля систем этими объектами (DI)
                 .Inject(staticData)

@@ -26,6 +26,10 @@ namespace Client {
                 Utility.Bind(gameObject, turret);
 
                 ref TurretComponent turretComponent = ref turret.Get<TurretComponent>();
+                turretComponent.range = 50;
+                turretComponent.damage = 1;
+                turretComponent.firerate = 1;
+                turretComponent.lastShootTime = 0;
             }
         }
     }

@@ -8,7 +8,7 @@ namespace Client
     sealed class ReachEndpointSystem : IEcsRunSystem
     {
         // auto-injected fields.
-        private EcsFilter<MovableComponent, GameObjectComponent>.Exclude<ReachEndpointComponent> reached;
+        private EcsFilter<MovableComponent, GameObjectComponent>.Exclude<ReachEndpointComponent, TurretComponent> reached;
 
         void IEcsRunSystem.Run()
         {

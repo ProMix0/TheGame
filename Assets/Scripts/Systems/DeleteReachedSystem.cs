@@ -8,7 +8,7 @@ namespace Client
     /// </summary>
     sealed class DeleteReachedSystem : IEcsRunSystem
     {
-        private EcsFilter<GameObjectComponent, ReachEndpointComponent> toDestroy;
+        private EcsFilter<GameObjectComponent, ReachEndpointComponent>.Exclude<TurretComponent> toDestroy;
 
         public void Run()
         {

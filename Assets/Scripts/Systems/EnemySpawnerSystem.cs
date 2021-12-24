@@ -42,6 +42,10 @@ namespace Client
                     movable.destination = Vector3.zero;
 
                     ship.Get<SetDestination>();
+
+                    ref HealthComponent health = ref ship.Get<HealthComponent>();
+                    health.maxHealth = 1;
+                    health.health = 1;
                 }
             }
         }
